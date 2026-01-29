@@ -1,0 +1,47 @@
+
+{% extends "layout.html" %}
+{% block title %}Separación | Calculadora E.D.{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Separación de variables</h1>
+  <p class="muted">Escribe solo el ecu de <code>{dy}/{dx} = ecu</code>.</p>
+
+  <div class="form-result-grid">
+    <div class="form-column">
+      <form method="POST" class="form">
+        <label>RHS (en x y y)</label>
+        <input name="rhs" placeholder="Ej. y  |  x*y  |  (x^2+1)/y  |  x*sin(y)" required>
+        <button class="btn" type="submit">Resolver</button>
+      </form>
+
+      {% if error %}
+        <div class="alert error">{{ error }}</div>
+      {% endif %}
+    </div>
+
+    <div class="result-column">
+      {% if resultado_latex %}
+        <div class="result card">
+          <h2>Solución</h2>
+          <div class="math-block">\[ {{ resultado_latex }} \]</div>
+
+          <h3>Pasos</h3>
+          <ol class="steps">
+            {% for s in pasos %}
+              <li>
+                <div class="step-title">{{ s.t }}</div>
+                <div class="math-block">\[ {{ s.m }} \]</div>
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+      {% else %}
+        <div class="card">
+          <h3 class="muted">Resultados</h3>
+          <p class="muted">Aquí aparecerán los resultados.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

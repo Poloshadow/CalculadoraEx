@@ -1,0 +1,41 @@
+
+{% extends "layout.html" %}
+{% block title %}Inicio | Calculadora E.D.{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Selecciona un método</h1>
+  <p class="muted">
+    Realiza entradas de datos con potencias usando <code>^</code> (ej. <code>x^2</code>).
+  </p>
+
+  <div class="app-dashboard card">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap:18px; align-items:start;">
+      <div>
+        <a class="tile" href="{{ url_for('separacion') }}">
+          <h2>Separación</h2>
+          <p>Ingresa RHS en: <code>dy/dx = RHS</code></p>
+          <p class="muted">Ejemplos: <code>y</code>, <code>x*y</code>, <code>x*sin(y)</code></p>
+        </a>
+
+        <a class="tile" href="{{ url_for('exactas') }}" style="margin-top:12px;">
+          <h2>Exactas</h2>
+          <p>Ingresa <code>M</code> y <code>N</code> en: <code>M dx + N dy = 0</code></p>
+          <p class="muted">Ejemplos: <code>M=2*x*y</code>, <code>N=x^2</code></p>
+        </a>
+      </div>
+      <aside class="card" style="border-left:4px solid var(--accent);">
+        <h3>Consejos</h3>
+        <ul style="margin:10px 0 0 16px; color:var(--muted)">
+          <li>Usa <code>^</code> para potencias.</li>
+          <li>Forma explícita suele ser más legible.</li>
+          <li>Para Euler usa <code>exp(x)</code> </li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="note" style="margin-top:14px;">
+      <strong>Entrada:</strong> usa <code>^</code> para potencias (recomendado). También se acepta <code>**</code>.
+    </div>
+  </div>
+</section>
+{% endblock %}
